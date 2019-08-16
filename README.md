@@ -11,3 +11,7 @@
 - Análise e decisões técnicas
 - Preparação de ambiente de desenvolvimento
 - Início do projeto
+- Carregador de dados: início
+- Carregador de dados: tentando resolver problema de carregamento
+- Carregador de dados: ainda tentando
+- Carregador de dados: script p/ limpeza, finalização
