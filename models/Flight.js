@@ -26,7 +26,15 @@ class Flight {
     }, {})
   }
 
+  static async create(params){
+    const filteredParams = Flight.filterAttributes(params)
+    const result = await Collection.insertOne(filteredParams)
 
+    return new Flight(Object.assign(
+      {}, 
+      filteredParams, 
+      { id: result.insertedId }))
+  }
 }
 
 module.exports = {
