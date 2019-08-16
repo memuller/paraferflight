@@ -54,6 +54,18 @@ class Flight {
         if (attribute !== 'date') {
           const searchField = `_lower_${attribute}`
           query[searchField] = params[attribute].toLowerCase()
+        } else {
+          const splatedDate = params['date'].split(
+            params['date'].includes('/') ? '/' : '-'
+          )
+          // months are counted from 0 (not 1) so we need to -1 it
+          const startDate = new Date(splatedDate[0], parseInt(splatedDate[1])-1, splatedDate[2])
+          //searches from the begging of the current day to the beggining of the next one
+          const endDate = new Date(splatedDate[0], parseInt(splatedDate[1])-1, parseInt(splatedDate[2])+1)
+          query['date'] = {
+            "$gte": startDate, 
+            "$lt": endDate
+          }
         }
       }
     }
