@@ -1,11 +1,9 @@
 const fs = require('fs')
 const parse = require('csv-parse')
-const async = require('async')
 const MongoClient = require('mongodb').MongoClient
+const Config = require('./../config.json')
 
 const csvFile = process.env.CSV || './data.csv'
-
-const mongoURL = process.env.mongoURL || 'mongodb://localhost:27017'
 
 let mongo
 let currentLine = 0
@@ -70,8 +68,8 @@ function end() {
 
 (async function main(){
 
-  mongo = await MongoClient.connect(mongoURL, { useNewUrlParser: true })
-  const collection = mongo.db('paraferflight').collection('flights')
+  mongo = await MongoClient.connect(Config.mongo.url, { useNewUrlParser: true })
+  const collection = mongo.db(Config.mongo.database).collection(Config.mongo.collection)
 
   // we could make this more readable with promises,
   // but it's easier and faster to use the event-based API
