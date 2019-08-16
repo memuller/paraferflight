@@ -1,10 +1,12 @@
 const fs = require('fs')
 const parse = require('csv-parse')
 const mongo = require('./../lib/db')
+const FlightsDB = require('./../models/Flight')
 
 const csvFile = process.env.CSV || './data.csv'
 
 let db
+let Flight
 let currentLine = 0
 let insertions = 0
 function insert(row) {
@@ -49,14 +51,12 @@ function insert(row) {
   }
   currentLine++
   
-  db.flights.insertOne(data, (err, res) => {
-    if (err) throw err
+  Flight.create(data).then((flight) => {
     insertions++
     if (insertions === currentLine-2) {
       end()
     }
   })
-
 }
 
 function end() {
@@ -68,6 +68,8 @@ function end() {
 (async function main(){
 
   db = await mongo.db()
+  FlightsDB.setCollection(db.flights)
+  Flight = FlightsDB.Flight
 
   // we could make this more readable with promises,
   // but it's easier and faster to use the event-based API
