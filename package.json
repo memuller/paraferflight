@@ -1,0 +1,11 @@
+{
+  "name": "parafernalha.flight-data",
+  "author": {
+    "name": "Matheus E. Muller",
+    "email": "hello@memuller.com",
+    "url": "https://memuller.com"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
