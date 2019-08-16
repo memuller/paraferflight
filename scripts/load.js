@@ -1,14 +1,13 @@
 const fs = require('fs')
 const parse = require('csv-parse')
-const MongoClient = require('mongodb').MongoClient
-const Config = require('./../config.json')
+const mongo = require('./../lib/db')
 
 const csvFile = process.env.CSV || './data.csv'
 
-let mongo
+let db
 let currentLine = 0
 let insertions = 0
-function insert(row, collection) {
+function insert(row) {
   /* ROW DATA STRUCTURE
   necessary because organizing data by their CSV headers 
   (the first line) isn't working; likely due to 
@@ -50,7 +49,7 @@ function insert(row, collection) {
   }
   currentLine++
   
-  collection.insertOne(data, (err, res) => {
+  db.flights.insertOne(data, (err, res) => {
     if (err) throw err
     insertions++
     if (insertions === currentLine-2) {
@@ -62,20 +61,19 @@ function insert(row, collection) {
 
 function end() {
   console.log('done')
-  mongo.close()
+  db.close()
   process.exit(0)
 }
 
 (async function main(){
 
-  mongo = await MongoClient.connect(Config.mongo.url, { useNewUrlParser: true })
-  const collection = mongo.db(Config.mongo.database).collection(Config.mongo.collection)
+  db = await mongo.db()
 
   // we could make this more readable with promises,
   // but it's easier and faster to use the event-based API
   // since it reads by line and the file is pretty big
   fs.createReadStream(csvFile)
     .pipe(parse())
-    .on('data', (row) => insert(row, collection))
+    .on('data', (row) => insert(row))
     .on('end', () => console.log('finished reading'))
 })();
