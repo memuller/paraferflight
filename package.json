@@ -7,7 +7,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "load": "node scripts/load.js"
+    "load": "node scripts/load.js",
+    "clear": "node scripts/clear.js",
+    "reset": "node scripts/clear.js && node scripts/load.js"
   },
   "dependencies": {
     "async": "^3.1.0",
