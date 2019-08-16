@@ -6,9 +6,11 @@
     "url": "https://memuller.com"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "load": "node scripts/load.js"
   },
   "dependencies": {
+    "csv-parse": "^4.4.5",
     "express": "^4.17.1"
   }
 }
