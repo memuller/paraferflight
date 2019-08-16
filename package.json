@@ -10,7 +10,9 @@
     "load": "node scripts/load.js"
   },
   "dependencies": {
+    "async": "^3.1.0",
     "csv-parse": "^4.4.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0"
   }
 }
