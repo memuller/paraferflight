@@ -5,6 +5,9 @@
     "email": "hello@memuller.com",
     "url": "https://memuller.com"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }
