@@ -17,4 +17,6 @@ mongo.db().then( (connection) => {
   FlightsDB.setCollection(connection.flights)
   app.locals.Flight = FlightsDB.Flight
   app.listen(PORT, () => 'app is up!')
+  process.on('SIGINT', () => mongo.close() )
 })
+

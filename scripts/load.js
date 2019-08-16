@@ -74,6 +74,7 @@ function end() {
     _lower_from: 1,
     _lower_company: 1
   })
+  db.flights.ensureIndex('date')
 
   FlightsDB.setCollection(db.flights)
   Flight = FlightsDB.Flight
@@ -85,4 +86,5 @@ function end() {
     .pipe(parse())
     .on('data', (row) => insert(row))
     .on('end', () => console.log('finished reading'))
+  process.on('SIGINT', () => db.close() )
 })();
