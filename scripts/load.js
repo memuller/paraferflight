@@ -86,5 +86,8 @@ function end() {
     .pipe(parse())
     .on('data', (row) => insert(row))
     .on('end', () => console.log('finished reading'))
-  process.on('SIGINT', () => db.close() )
+  process.on('SIGINT', () => {
+    db.close()
+    process.exit()
+  })
 })();
