@@ -5,6 +5,8 @@ function setCollection(arg) {
 
 const ALLOWED_FIELDS = ['from', 'to', 'date', 'company', 'index']
 
+const SEARCH_FIELDS = [ 'from', 'to', 'company', 'date' ]
+
 class Flight {
   constructor(params){
     this.from = params.from
@@ -43,6 +45,21 @@ class Flight {
       filteredParams, 
       { id: result.insertedId }))
   }
+
+  static async find(params) {
+    const query = {}
+    for ( let i = 0; i < SEARCH_FIELDS.length; i++ ) {
+      let attribute = SEARCH_FIELDS[i]
+      if (params[attribute]) {
+        if (attribute !== 'date') {
+          const searchField = `_lower_${attribute}`
+          query[searchField] = params[attribute].toLowerCase()
+        }
+      }
+    }
+    const result = await Collection.find(query).toArray()
+    return result.map( (item) => new Flight(item) )
+  } 
 }
 
 module.exports = {
