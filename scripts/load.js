@@ -68,6 +68,13 @@ function end() {
 (async function main(){
 
   db = await mongo.db()
+
+  db.flights.ensureIndex({
+    _lower_to: 1,
+    _lower_from: 1,
+    _lower_company: 1
+  })
+
   FlightsDB.setCollection(db.flights)
   Flight = FlightsDB.Flight
 
