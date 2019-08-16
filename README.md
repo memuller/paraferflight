@@ -11,7 +11,7 @@ Programa implementado como parte do desafio técnico da Parafernalha Criativa.
 - `yarn load` carrega os vôos contidos em `data.csv` -  atualmente isso não insere todos os vôos, vide problema descrito abaixo;
 - `yarn reset` executa as duas tarefas em sucessão.
 
-### Programa Principal
+#### Programa Principal
 - `yarn run start` executa o programa principal na porta 3000.
 - se necessário, altere a porta com a variável de ambiente PORT.
 
@@ -21,8 +21,7 @@ Programa implementado como parte do desafio técnico da Parafernalha Criativa.
 - um servidor MongoDB em execução; altere a URL ou porta deste no arquivo `config.json` se necessário.
 
 ## Decisões técnicas
-- Cogitei usar Typescript; mas tive receio disso consumir muito tempo
-- Preferi iniciar o projeto "do zero", sem starters/projetos base
+- Preferi iniciar o projeto "do zero", sem starters/projetos base ou bibliotecas de ORM ou gerenciamento de conexão de banco
   - isso gerou um certo trabalho no compartilhamento de conexão com banco entre rotas e classe-modelo 
 - csv-parse usado para carregar os dados do CSV; dado o tamanho do arquivo, a API de nível mais baixo (que emite eventos e processa linha-a-linha) foi usada para evitar que o arquivo inteiro seja carregado em memória
   - isso na prática não resolveu o problema e causou grande perda de tempo. no momento, os vôos não são carregados completamente pois eventualmente o carregador deixa de responder.
@@ -41,7 +40,7 @@ Programa implementado como parte do desafio técnico da Parafernalha Criativa.
 - O tamanho do arquivo de exemplo gerou dificuldades e decisões complicadas de funcionalidade vs. desempenho; nestes casos desempenho sempre foi escolhido
 
 ## Alocação de tempo
-Tempo medido em Pomodoros - intervalos de trabalho de 25min de duração. Cada item na lista corresponde a tal intervalo, totalizando 6h50min.
+Tempo medido em Pomodoros - intervalos de trabalho de 25min de duração. Cada item na lista corresponde a tal intervalo, totalizando **6h50min**.
 
 
 - Análise e decisões técnicas
