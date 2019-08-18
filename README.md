@@ -1,6 +1,6 @@
 # Parafeflight
 
-Programa implementado como parte do desafio técnico da Parafernalha Criativa.
+Programa implementado como parte do desafio técnico da Parafernalha Interativa.
 
 ## Instruções
 
@@ -19,6 +19,7 @@ Programa implementado como parte do desafio técnico da Parafernalha Criativa.
 - Node.js > 10.2
 - o CSV de exemplo fornecido, com nome `data.csv`, colocado na raiz do aplicativo
 - um servidor MongoDB em execução; altere a URL ou porta deste no arquivo `config.json` se necessário.
+- dependências instaladas, via `yarn install`
 
 ## Decisões técnicas
 - Preferi iniciar o projeto "do zero", sem starters/projetos base ou bibliotecas de ORM ou gerenciamento de conexão de banco
