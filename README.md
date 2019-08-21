@@ -1,6 +1,6 @@
 # Parafeflight
 
-Programa implementado como parte do desafio técnico da Parafernalha Interativa.
+Programa implementado como parte do desafio técnico da Parafernália Interativa.
 
 ## Instruções
 
